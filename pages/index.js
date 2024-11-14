@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { getDishReviews } from "../api/api";
+import { getDishReviews } from "./api/api";
 import TestButton from "../components/TestButton";
 import { Center, Stack } from "@mantine/core";
+import DishSearch from "../components/DishSearch/DishSearch";
 
 const Home = () => {
 	const [reviews, setReviews] = useState(null);
@@ -20,17 +21,19 @@ const Home = () => {
 	};
 
 	return (
-		<>
-			<div className="home">
-				<Center>
-					<Stack>
-						<h1 className="home__title">Dining Hall Dish Reviews</h1>
-						<TestButton text="Pizza" />
-						{/* {reviews && <p>{JSON.stringify(reviews, null, 2)}</p>} */}
-					</Stack>
-				</Center>
-			</div>
-		</>
+		<DishSearch />
+		// <>
+		// 	<div className="home">
+		// 		<Center>
+		// 			<Stack>
+		// 				<h1 className="home__title">Dining Hall Dish Reviews</h1>
+
+		// 				<TestButton text="Pizza" />
+		// 				{/* {reviews && <p>{JSON.stringify(reviews, null, 2)}</p>} */}
+		// 			</Stack>
+		// 		</Center>
+		// 	</div>
+		// </>
 	);
 };
 
