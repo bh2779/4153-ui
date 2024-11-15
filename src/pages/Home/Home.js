@@ -12,7 +12,7 @@ const Home = () => {
     // }
 
     const handleClick = async () => {
-        const response = await fetch('http://54.166.38.176:8000/dishes/1/reviews')
+        const response = await fetch('http://54.152.86.33:8000/dishes/1/reviews')
         const json = await response.json()
         setReviews(json)
     }
