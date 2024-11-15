@@ -1,0 +1,47 @@
+/* DishSearch.module.css */
+
+/* SearchBar Styles */
+.searchBar {
+	padding: 10px 14px;
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	border: 1px solid #e0e0e0;
+}
+
+/* SearchResult Styles */
+.searchResult {
+	cursor: pointer;
+	padding: 10px 15px;
+	border-radius: 8px;
+	transition: background-color 0.2s;
+}
+
+.searchResult:hover {
+	background-color: #f5f5f5; /* Light gray on hover */
+}
+
+.searchInput {
+	padding: 10px 14px 10px 14px; /* Adjust padding for space on the left */
+	padding-right: 40px; /* Add padding on the right for the icon */
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+	border: 1px solid #e0e0e0; /* Light border for structure */
+}
+
+/* DishSearch Container */
+.dishSearchContainer {
+	max-width: 80%;
+	margin: auto;
+	padding-top: 20px;
+}
+
+.resultsList {
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.resultsList {
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	list-style-type: none; /* Remove bullets */
+	padding-left: 0; /* Remove left padding */
+}
