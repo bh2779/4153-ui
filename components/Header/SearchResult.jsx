@@ -1,6 +1,5 @@
-// components/SearchResult.js
 import { Text, List, Group } from "@mantine/core";
-import styles from "./DishSearch.module.css";
+import styles from "./Header.module.css";
 
 function SearchResult({ result, onSelect }) {
 	return (
@@ -13,10 +12,12 @@ function SearchResult({ result, onSelect }) {
 				},
 			})}
 		>
-			<Group>
-				<Text weight={500}>{result.name}</Text> {/* Slightly bolder text */}
-				<Text weight={500}>{result.diningHall}</Text>
-				<Text weight={500}>{result.station}</Text>
+			<Group position="apart">
+				<Text className={styles.searchName}>{result.name}</Text>
+				<div className={styles.metadataGroup}>
+					<Text className={styles.searchMetadata}>{result.diningHall}</Text>
+					<Text className={styles.searchMetadata}>{result.station}</Text>
+				</div>
 			</Group>
 		</List.Item>
 	);

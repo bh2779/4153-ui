@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import { getDishReviews } from "./api/api";
-import TestButton from "../components/TestButton";
-import { Center, Stack } from "@mantine/core";
-import DishSearch from "../components/DishSearch/DishSearch";
+import Header from "../components/Header/Header";
 
 const Home = () => {
 	const [reviews, setReviews] = useState(null);
@@ -21,7 +18,7 @@ const Home = () => {
 	};
 
 	return (
-		<DishSearch />
+		<Header />
 		// <>
 		// 	<div className="home">
 		// 		<Center>
