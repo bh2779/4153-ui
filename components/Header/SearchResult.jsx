@@ -1,6 +1,5 @@
-// components/SearchResult.js
 import { Text, List, Group } from "@mantine/core";
-import styles from "./DishSearch.module.css";
+import styles from "./Header.module.css";
 
 function SearchResult({ result, onSelect }) {
 	return (
