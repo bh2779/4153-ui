@@ -71,6 +71,6 @@
 	list-style-type: none; /* Remove bullets */
 	padding-left: 0;
 	margin: 0 auto; /* Center horizontally */
-	background-color: white; /* Ensure visibility */
+	background-color: whitesmoke; /* Ensure visibility */
 	width: 80%; /* Adjust to your needs */
 }
