@@ -18,7 +18,8 @@ const Home = () => {
 	};
 
 	return (
-		<Header />
+		<></>
+		// <Header />
 		// <>
 		// 	<div className="home">
 		// 		<Center>

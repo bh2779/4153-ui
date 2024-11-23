@@ -1,5 +1,6 @@
 import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
+import Layout from "../components/Layout/Layout";
 
 export default function App({ Component, pageProps }) {
 	return (
@@ -12,7 +13,9 @@ export default function App({ Component, pageProps }) {
 				headings: { fontFamily: "Greycliff CF, sans-serif" },
 			}}
 		>
-			<Component {...pageProps} />
+			<Layout>
+				<Component {...pageProps} />
+			</Layout>
 		</MantineProvider>
 	);
 }
