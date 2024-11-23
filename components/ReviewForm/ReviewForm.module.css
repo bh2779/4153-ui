@@ -1,0 +1,22 @@
+/* Full-page container */
+.pageContainer {
+	min-height: 100vh; /* Ensure it takes the full height of the viewport */
+	display: flex;
+	flex-direction: column;
+}
+
+.formContainer {
+    width: 70%;
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    background-color: lightsteelblue;
+}
+
+.searchBarContainer {
+    padding-bottom: 0px;
+}
+
+.ratingContainer {
+    padding-top: 0px;
+}

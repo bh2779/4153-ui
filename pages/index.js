@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Header from "../components/Header/Header";
+import ReviewForm from "../components/ReviewForm/ReviewForm";
 
 const Home = () => {
 	const [reviews, setReviews] = useState(null);
@@ -18,7 +19,8 @@ const Home = () => {
 	};
 
 	return (
-		<Header />
+		// <Header />
+		<ReviewForm />
 		// <>
 		// 	<div className="home">
 		// 		<Center>
