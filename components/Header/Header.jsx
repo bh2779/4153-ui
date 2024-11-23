@@ -11,6 +11,7 @@ function Header() {
 	const [diningHalls, setDiningHalls] = useState({});
 	const [stations, setStations] = useState({});
 	const [shouldShowResults, setShouldShowResults] = useState(true);
+	const [searchValue, setSearchValue] = useState("");
 
 	useEffect(() => {
 		async function getDiningHallsAndStations(params) {
@@ -61,6 +62,11 @@ function Header() {
 		[diningHalls, stations]
 	);
 
+	const handleResultClick = (value) => {
+		setSearchValue(value);
+		setShouldShowResults(false);
+	};
+
 	return (
 		<div className={styles.headerContainer}>
 			{/* Search Bar */}
@@ -69,7 +75,12 @@ function Header() {
 					className={styles.searchBarContainer}
 					onClick={() => setShouldShowResults(true)}
 				>
-					<SearchBar onSearch={handleSearch} className={styles.searchBar} />
+					<SearchBar
+						value={searchValue}
+						onSearch={handleSearch}
+						onChange={(e) => setSearchValue(e.target.value)}
+						className={styles.searchBar}
+					/>
 				</div>
 			</header>
 			{/* Search Results */}
@@ -86,7 +97,7 @@ function Header() {
 										station: result.station,
 									},
 								}}
-								onClick={() => setShouldShowResults(false)}
+								onClick={() => handleResultClick(result.name)}
 								key={result.id}
 							>
 								<SearchResult result={result} />
