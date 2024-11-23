@@ -1,8 +1,7 @@
-// components/SearchBar.js
 import { useState, useEffect, useRef } from "react";
 import { TextInput, Loader } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
-import styles from "./DishSearch.module.css";
+import styles from "./Header.module.css";
 
 function SearchBar({ onSearch }) {
 	const [query, setQuery] = useState("");
@@ -32,7 +31,7 @@ function SearchBar({ onSearch }) {
 			radius="md" // Rounded corners
 			size="md" // Medium size
 			variant="filled" // Filled style
-			className={styles.searchInput}
+			className={styles.searchBar}
 			rightSection={
 				loading ? (
 					<Loader size={24} />

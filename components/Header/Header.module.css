@@ -1,0 +1,76 @@
+/* Full-page container */
+.pageContainer {
+	min-height: 100vh; /* Ensure it takes the full height of the viewport */
+	display: flex;
+	flex-direction: column;
+}
+
+/* Full-width header */
+.header {
+	width: 100%;
+	background-color: #301934; /* Blue background */
+	color: white;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	position: fixed; /* Sticks the header to the top */
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+
+/* Search Bar */
+.searchBar {
+	padding: 25px 0px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.searchBarContainer {
+	width: 80%;
+	margin: auto;
+}
+
+/* Search Result */
+.searchResult {
+	cursor: pointer;
+	padding: 12px 15px;
+	border-radius: 12px; /* Round corners for a smoother look */
+	background-color: white;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+	transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.searchName {
+	font-weight: 600;
+	font-size: 1rem; /* Slightly larger text */
+	color: #1c7ed6; /* Blue color for emphasis */
+	letter-spacing: 0.5px; /* Slightly spaced letters for a modern look */
+	text-transform: capitalize; /* Capitalize first letter of each word */
+}
+
+.searchMetadata {
+	font-weight: 500;
+	font-size: 0.75rem; /* Extra small text size for metadata */
+	color: #6c757d;
+}
+
+.metadataGroup {
+	display: flex;
+	gap: 12px; /* Increased gap between dining hall and station */
+	margin-top: 4px; /* Small gap between the name and metadata */
+}
+
+.searchResult:hover {
+	background-color: #f5f5f5; /* Light gray on hover */
+}
+
+.resultsList {
+	position: relative; /* Establish stacking context */
+	top: 75px;
+	z-index: 100; /* Higher than the header */
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	list-style-type: none; /* Remove bullets */
+	padding-left: 0;
+	margin: 0 auto; /* Center horizontally */
+	background-color: whitesmoke; /* Ensure visibility */
+	width: 80%; /* Adjust to your needs */
+}
