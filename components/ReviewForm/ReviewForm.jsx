@@ -1,7 +1,6 @@
 import React from "react";
-import { useForm } from "@mantine/form";
 import { useState, useEffect, useCallback } from "react";
-import { Textarea, NumberInput, Button, Box, List } from "@mantine/core";
+import { Textarea, NumberInput, Button, List } from "@mantine/core";
 import axios from "axios";
 import SearchBar from "../../components/Header/SearchBar";
 import SearchResult from "../../components/Header/SearchResult";
@@ -14,6 +13,8 @@ function ReviewForm() {
     const [dishId, setDishId] = useState(null);
     const [rating, setRating] = useState("");
     const [review, setReview] = useState("");
+    const [shouldShowResults, setShouldShowResults] = useState(true);
+    const [searchValue, setSearchValue] = useState("");
 
     useEffect(() => {
 		async function getDiningHallsAndStations(params) {
@@ -64,8 +65,10 @@ function ReviewForm() {
 		[diningHalls, stations]
 	);
 
-    const handleSelect = (result) => {
-		setDishId(result.id)
+    const handleResultClick = (result) => {
+		setSearchValue(result.name);
+		setShouldShowResults(false);
+        setDishId(result.id)
 	};
 
     const handleSubmit = async () => {
@@ -86,6 +89,7 @@ function ReviewForm() {
             setDishId(null);
             setRating("");
             setReview("");
+            setSearchValue("");
         } catch (error) {
             console.error("Error submitting review:", error);
             alert("Failed to submit review. Please try again.");
@@ -96,25 +100,35 @@ function ReviewForm() {
         <div className={styles.pageContainer}>
 
             <div className={styles.formContainer}>
-                <div className={styles.searchBarContainer}>
-                    <SearchBar onSearch={handleSearch}/>
+                <div className={styles.searchBarContainer} onClick={() => setShouldShowResults(true)}>
+                    <SearchBar
+                        value={searchValue}
+						onSearch={handleSearch}
+						onChange={(e) => setSearchValue(e.target.value)}
+						className={styles.searchBar}
+                    />
                 </div>
                 
-                <List spacing="xs">
-                    {results.map((result) => (
-                        <SearchResult
-                            key={result.id}
-                            result={result}
-                            onSelect={handleSelect}
-                        />
-                    ))}
-                </List>
+                <div>
+                    {shouldShowResults && (
+                        <List className={styles.resultsList}>
+                            {results.map((result) => (
+                                <div
+                                    onClick={() => handleResultClick(result)}
+                                    key={result.id}
+                                >
+                                    <SearchResult result={result}/>
+                                </div>
+                            ))}
+                        </List>
+                    )}
+                </div>
 
                 <div className={styles.ratingContainer}>
                     <NumberInput
                         label="Rating"
                         type="number"
-                        placeholder="Rating (0-5)"
+                        placeholder="Rating (out of 5)"
                         value={rating}
                         onChange={setRating}
                         min={0}
@@ -125,90 +139,22 @@ function ReviewForm() {
                     />
                 </div>
 
-                <Textarea
-                    label="Review"
-                    placeholder="Write your review"
-                    value={review}
-                    onChange={(e) => setReview(e.target.value)}
-                    radius={"md"}
-                />
+                <div className={styles.reviewContainer}>
+                    <Textarea
+                        label="Review"
+                        placeholder="Write a review..."
+                        value={review}
+                        onChange={(e) => setReview(e.target.value)}
+                        radius={"md"}
+                    />
+                </div>
 
-                <Button onClick={handleSubmit}>Submit Review</Button>
+                <div className={styles.submitButtonContainer}>
+                    <Button onClick={handleSubmit} className={styles.submitButton}>Submit Review</Button>
+                </div>
             </div>
         </div>
     )
 }
-
-// function ReviewForm() {
-//     const form = useForm({
-//         initialValues: {
-//             dishId: "",
-//             rating: "",
-//             review: "",
-//         },
-
-//         validate: {
-//             rating: (value) => value >= 0 && value <= 5 ? null : "Rating must be a number between 0 and 5",
-//         }
-//     })
-
-//     const handleSubmit = async (values) => {
-//         try {
-//             const response = await axios.post(`/api/postReview`, {
-//                 body: JSON.stringify({
-//                     dish_id: values.dishId,
-//                     rating: values.rating,
-//                     review: values.review,
-//                 }),
-//             });
-    
-//             if (response.status != 201) {
-//                 throw new Error(`Failed to submit: ${response.statusText}`);
-//             }
-    
-//             alert("Review submitted successfully!");
-//             form.reset();
-//         } catch (error) {
-//             console.error("Error submitting review:", error);
-//             alert("Failed to submit review. Please try again.");
-//         }
-//     };
-
-//     return (
-//         <Box maw={400} mx="auto">
-//             <form onSubmit={form.onSubmit(handleSubmit)}>
-//                 {/* Dish ID Input */}
-//                 <NumberInput
-//                     label="Dish ID"
-//                     placeholder="Enter the dish ID"
-//                     {...form.getInputProps("dishId")}
-//                 />
-    
-//                 {/* Rating Input */}
-//                 <NumberInput
-//                     label="Rating"
-//                     placeholder="Enter a rating (0 to 5)"
-//                     mt="sm"
-//                     min={0}
-//                     max={5}
-//                     {...form.getInputProps("rating")}
-//                 />
-    
-//                 {/* Review Input */}
-//                 <Textarea
-//                     label="Review"
-//                     placeholder="Write your review"
-//                     mt="sm"
-//                     {...form.getInputProps("review")}
-//                 />
-    
-//                 {/* Submit Button */}
-//                 <Button type="submit" mt="md">
-//                     Submit
-//                 </Button>
-//             </form>
-//         </Box>
-//     )
-// }
 
 export default ReviewForm;

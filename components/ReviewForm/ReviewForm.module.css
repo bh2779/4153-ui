@@ -10,13 +10,44 @@
     position: absolute;
     top: 20%;
     left: 15%;
-    background-color: lightsteelblue;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .searchBarContainer {
     padding-bottom: 0px;
 }
 
+.resultsList {
+	z-index: 100; /* Higher than other elements */
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	list-style-type: none; /* Remove bullets */
+	padding-left: 0;
+	margin: 0;
+	background-color: whitesmoke;
+	width: 80%;
+}
+
 .ratingContainer {
     padding-top: 0px;
+    padding-bottom: 20px;
+}
+
+.reviewContainer {
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+
+.submitButtonContainer {
+    width: 16%;
+    position: sticky;
+    left: 44.4%;
+}
+
+.submitButton {
+    width: 100%;
+    border-radius: 8px;
 }
