@@ -3,8 +3,7 @@ import { TextInput, Loader } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
 import styles from "./Header.module.css";
 
-function SearchBar({ onSearch }) {
-	const [query, setQuery] = useState("");
+function SearchBar({ value, onSearch, onChange }) {
 	const [loading, setLoading] = useState(false);
 	const isMounted = useRef(false);
 
@@ -16,18 +15,18 @@ function SearchBar({ onSearch }) {
 			isMounted.current = true;
 		}
 		const delayDebounceFn = setTimeout(() => {
-			onSearch(query);
+			onSearch(value);
 			setLoading(false);
 		}, 750); // Debounce API call
 
 		return () => clearTimeout(delayDebounceFn);
-	}, [query, onSearch]);
+	}, [value, onSearch]);
 
 	return (
 		<TextInput
 			placeholder="Search for dishes..."
-			value={query}
-			onChange={(e) => setQuery(e.target.value)}
+			value={value}
+			onChange={onChange}
 			radius="md" // Rounded corners
 			size="md" // Medium size
 			variant="filled" // Filled style

@@ -1,10 +1,9 @@
 import { Text, List, Group } from "@mantine/core";
 import styles from "./Header.module.css";
 
-function SearchResult({ result, onSelect }) {
+function SearchResult({ result }) {
 	return (
 		<List.Item
-			onClick={() => onSelect(result)}
 			className={styles.searchResult}
 			sx={(theme) => ({
 				"&:hover": {

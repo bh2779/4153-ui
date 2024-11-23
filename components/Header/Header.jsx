@@ -4,14 +4,14 @@ import { List } from "@mantine/core";
 import SearchResult from "./SearchResult";
 import axios from "axios";
 import styles from "./Header.module.css";
-
-// TODO: might need to memoize dining halls and stations so don't need to repopulate every time
-// TODO: make it so that results are hidden if user clicks away from search bar
+import Link from "next/link";
 
 function Header() {
 	const [results, setResults] = useState([]);
 	const [diningHalls, setDiningHalls] = useState({});
 	const [stations, setStations] = useState({});
+	const [shouldShowResults, setShouldShowResults] = useState(true);
+	const [searchValue, setSearchValue] = useState("");
 
 	useEffect(() => {
 		async function getDiningHallsAndStations(params) {
@@ -62,29 +62,50 @@ function Header() {
 		[diningHalls, stations]
 	);
 
-	const handleSelect = (result) => {
-		console.log("Selected dish:", result);
-		// Add your navigation or detail view logic here
+	const handleResultClick = (value) => {
+		setSearchValue(value);
+		setShouldShowResults(false);
 	};
 
 	return (
-		<div className={styles.pageContainer}>
+		<div className={styles.headerContainer}>
 			{/* Search Bar */}
 			<header className={styles.header}>
-				<div className={styles.searchBarContainer}>
-					<SearchBar onSearch={handleSearch} className={styles.searchBar} />
+				<div
+					className={styles.searchBarContainer}
+					onClick={() => setShouldShowResults(true)}
+				>
+					<SearchBar
+						value={searchValue}
+						onSearch={handleSearch}
+						onChange={(e) => setSearchValue(e.target.value)}
+						className={styles.searchBar}
+					/>
 				</div>
 			</header>
 			{/* Search Results */}
-			<List spacing="xs" className={styles.resultsList}>
-				{results.map((result) => (
-					<SearchResult
-						key={result.id}
-						result={result}
-						onSelect={handleSelect}
-					/>
-				))}
-			</List>
+			<div className={styles.resultsListContainer}>
+				{shouldShowResults && (
+					<List className={styles.resultsList}>
+						{results.map((result) => (
+							<Link
+								href={{
+									pathname: `/dish/${result.id}`,
+									query: {
+										dish: result.name,
+										diningHall: result.diningHall,
+										station: result.station,
+									},
+								}}
+								onClick={() => handleResultClick(result.name)}
+								key={result.id}
+							>
+								<SearchResult result={result} />
+							</Link>
+						))}
+					</List>
+				)}
+			</div>
 		</div>
 	);
 }
