@@ -1,6 +1,6 @@
 /* Full-page container */
 .pageContainer {
-	min-height: 100vh; /* Ensure it takes the full height of the viewport */
+	min-height: 100vh; 
 	display: flex;
 	flex-direction: column;
 }
@@ -8,12 +8,21 @@
 .formContainer {
     width: 70%;
     position: absolute;
-    top: 20%;
+    top: 85%;
     left: 15%;
     background-color: white;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 20px;
     border-radius: 10px;
+}
+
+.titleContainer {
+    padding-bottom: 20px;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-family: Verdana, sans-serif;
+    font-size: larger;
 }
 
 .nameContainer {
@@ -55,4 +64,7 @@
 .submitButton {
     width: 100%;
     border-radius: 8px;
+    font-family: Verdana, sans-serif;
+    font-weight: normal;
 }
+

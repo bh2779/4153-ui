@@ -80,6 +80,10 @@ function DishForm() {
         <div className={styles.pageContainer}>
 
             <div className={styles.formContainer}>
+                <div className={styles.titleContainer}>
+                    Submit a new dish
+                </div>
+
                 <div className={styles.nameContainer}>
                     <TextInput 
                         label="Dish Name"
