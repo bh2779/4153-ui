@@ -1,6 +1,6 @@
 import React from "react";
-import { useState, useEffect, useCallback } from "react";
-import { TextInput, Textarea, NumberInput, Button, List, Select } from "@mantine/core";
+import { useState, useEffect } from "react";
+import { TextInput, Textarea, Button, Select } from "@mantine/core";
 import axios from "axios";
 import styles from "./DishForm.module.css";
 
