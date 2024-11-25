@@ -81,7 +81,7 @@ function ReviewForm() {
                 }),
             });
     
-            if (response.status != 201) {
+            if (response.status !== 201) {
                 throw new Error(`Failed to submit: ${response.statusText}`);
             }
     
@@ -98,8 +98,11 @@ function ReviewForm() {
 
     return (
         <div className={styles.pageContainer}>
-
             <div className={styles.formContainer}>
+                <div className={styles.titleContainer}>
+                    Write a review
+                </div>
+
                 <div className={styles.searchBarContainer} onClick={() => setShouldShowResults(true)}>
                     <SearchBar
                         value={searchValue}
@@ -122,6 +125,10 @@ function ReviewForm() {
                             ))}
                         </List>
                     )}
+                </div>
+
+                <div className={styles.dishDoesNotExistTextContainer}>
+                    If the dish you're looking for doesn't exist, you can submit a new dish using the form below!
                 </div>
 
                 <div className={styles.ratingContainer}>
