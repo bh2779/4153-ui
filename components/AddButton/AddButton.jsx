@@ -7,7 +7,6 @@ export default function AddButton() {
     return (
         <Link href="/review/form" passHref>
             <Button
-                component="a"
                 size="lg"
                 radius="xl"
                 variant="light"

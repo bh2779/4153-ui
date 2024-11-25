@@ -81,7 +81,7 @@ function ReviewForm() {
                 }),
             });
     
-            if (response.status != 201) {
+            if (response.status !== 201) {
                 throw new Error(`Failed to submit: ${response.statusText}`);
             }
     
