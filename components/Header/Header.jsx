@@ -63,7 +63,7 @@ function Header() {
 	);
 
 	const handleResultClick = (value) => {
-		setSearchValue(value);
+		setSearchValue(value.name);
 		setShouldShowResults(false);
 	};
 
@@ -97,7 +97,7 @@ function Header() {
 										station: result.station,
 									},
 								}}
-								onClick={() => handleResultClick(result.name)}
+								onClick={() => handleResultClick(result)}
 								key={result.id}
 							>
 								<SearchResult result={result} />
