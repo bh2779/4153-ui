@@ -3,9 +3,9 @@ import axios from "axios";
 export default async function getReviews(req, res) {
 	const { query } = req.query;
 	const endpoint = process.env.REVIEW_RATING_SERVICE_URL + "/reviews";
+	const dish_id = Number(req.query.dish_id);
 	const queryParams = {
-		name: query,
-		limit: 5,
+		dish_id: dish_id
 	};
 
 	try {
