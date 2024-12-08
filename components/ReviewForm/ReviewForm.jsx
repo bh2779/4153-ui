@@ -92,7 +92,7 @@ function ReviewForm() {
             setSearchValue("");
         } catch (error) {
             console.error("Error submitting review:", error);
-            alert("Failed to submit review. Please try again.");
+            alert("Failed to submit review. Please make sure you are signed in.");
         }
     };
 
