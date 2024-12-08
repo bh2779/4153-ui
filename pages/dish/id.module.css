@@ -1,0 +1,22 @@
+.dishDetails{
+    background-color: white;
+    width: 90%;
+    margin-top: 3%;
+    margin-left: 5%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 0px;
+    padding-bottom: 2px;
+}
+
+.dishDetailsTitle{
+    font-size: larger;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.reviewsList{
+    padding-bottom: 10px;
+}
