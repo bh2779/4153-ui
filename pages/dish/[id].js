@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import ReviewResult from "../../components/ReviewResult/ReviewResult";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Text, List, Group } from "@mantine/core";
+import { List } from "@mantine/core";
 import styles from "./id.module.css"
 
 export default function ReviewsPage() {
@@ -31,6 +31,8 @@ export default function ReviewsPage() {
 		if (reviews.length > 0) {
 			const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
 			setAverageRating(totalRating / reviews.length);
+		} else {
+			setAverageRating('N/A');
 		}
 	}, [reviews]);
 
@@ -38,10 +40,10 @@ export default function ReviewsPage() {
 		<div>
 			<div className={styles.dishDetails}>
 				<p className={styles.dishDetailsTitle}>Dish Details</p>
-				<p>Name: {dish}</p>
-				<p>Dining Hall: {diningHall}</p>
-				<p>Station: {station}</p>
-				<p>Average Rating: {averageRating.toFixed(1)}</p>
+				<p> <b>Name:</b> {dish}</p>
+				<p> <b>Dining Hall:</b> {diningHall}</p>
+				<p> <b>Station:</b> {station}</p>
+				<p> <b>Average Rating:</b> {typeof averageRating === 'number'? `${averageRating.toFixed(1)} out of 5`: averageRating}</p>
 			</div>
 			<div className={styles.reviewsList}>
 				<List>
