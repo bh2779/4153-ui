@@ -5,10 +5,18 @@ export default async function getUserInfo(req, res) {
 	const endpoint = process.env.COMPOSITE_SERVICE_URL + "/google_login";
 
 	try {
-		const response = await axios.post(endpoint, JSON.parse(body));
+		const response = await axios.post(endpoint, JSON.parse(body), { withCredentials: true});
 
+		const setCookie = response.headers['set-cookie'];
+        if (setCookie) {
+            res.setHeader('Set-Cookie', setCookie); // Forward Set-Cookie to the browser
+        }
+
+        // Send response data back to the browser
+        res.status(response.status).json(response.data);
+		
 		// Forward the response from the service to the client
-		res.status(200).json(response.data);
+		// res.status(200).json(response.data);
 	} catch (error) {
 		console.error(
 			"Error getting user info:",

@@ -9,6 +9,8 @@ import Cookies from 'js-cookie';
 function Auth() {
     const [loggedIn, setLoggedIn] = useState(false);
     const [user, setUser] = useState({});
+    const [token, setToken] = useState('');
+
     const googleLogin = useGoogleLogin({
         flow: "auth-code",
         onSuccess: async (codeResponse) => {
@@ -24,11 +26,18 @@ function Auth() {
             // Cookies.set("access_csrf_token_cookie", access_csrf_token);
             setLoggedIn(true);
             setUser(loginDetails.data.user);
+            setToken(loginDetails.data.access_token);
         },
     });
   
     async function handleLogout() {
-        const msg = await axios.get(`/api/getProtected`)
+        // const msg = await axios.get(`/api/getProtected`, { withCredentials: true })
+        const msg = await axios.post(`/api/logout`, {
+            body: JSON.stringify({
+                access_token: token
+            })
+        });
+        // const msg = await axios.get(`http://lvh.me:8000/protected`, { withCredentials: true })
         setLoggedIn(false);
     }
   
