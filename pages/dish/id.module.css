@@ -17,6 +17,10 @@
     padding-top: 10px;
 }
 
-.reviewsList{
+.reviewsListContainer{
     padding-bottom: 10px;
+}
+
+.reviewsList{
+    list-style-type: none;
 }

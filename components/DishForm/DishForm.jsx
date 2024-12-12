@@ -67,7 +67,7 @@ function DishForm() {
                 throw new Error(`Failed to submit: ${response.statusText}`);
             }
 
-            alert("Review submitted successfully!");
+            alert("Dish submitted successfully!");
             setDishName("");
             setDishDescription("");
         } catch (error) {

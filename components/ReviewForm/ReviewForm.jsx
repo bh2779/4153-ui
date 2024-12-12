@@ -5,6 +5,7 @@ import axios from "axios";
 import SearchBar from "../../components/Header/SearchBar";
 import SearchResult from "../../components/Header/SearchResult";
 import styles from "./ReviewForm.module.css";
+import { Dropzone, IMAGE_MIME_TYPE } from "@mantine/dropzone";
 
 function ReviewForm() {
     const [results, setResults] = useState([]);
@@ -15,6 +16,8 @@ function ReviewForm() {
     const [review, setReview] = useState("");
     const [shouldShowResults, setShouldShowResults] = useState(true);
     const [searchValue, setSearchValue] = useState("");
+    const [uploadedImage, setUploadedImage] = useState(null); // File object for upload
+    const [previewImage, setPreviewImage] = useState(null); // Base64 string for preview
 
     useEffect(() => {
 		async function getDiningHallsAndStations(params) {
@@ -71,14 +74,36 @@ function ReviewForm() {
         setDishId(result.id)
 	};
 
+    const handleImageDrop = (files) => {
+        const file = files[0]; // Only allow one image
+        if (file) {
+            setUploadedImage(file);
+    
+            // Generate a preview using FileReader
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const base64Image = reader.result.split(',')[1];
+                setPreviewImage(base64Image);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     const handleSubmit = async () => {
         try {
+            let body = {
+                dish_id: dishId,
+                rating: rating,
+                review: review,
+            };
+
+            if (previewImage) {
+                body.image_name = uploadedImage.name;
+                body.image = previewImage;
+                body.image_type = uploadedImage.type;
+            }
             const response = await axios.post(`/api/postReview`, {
-                body: JSON.stringify({
-                    dish_id: dishId,
-                    rating: rating,
-                    review: review,
-                }),
+                body: JSON.stringify(body),
             });
     
             if (response.status !== 201) {
@@ -90,9 +115,11 @@ function ReviewForm() {
             setRating("");
             setReview("");
             setSearchValue("");
+            setUploadedImage(null);
+            setPreviewImage(null);
         } catch (error) {
             console.error("Error submitting review:", error);
-            alert("Failed to submit review. Please try again.");
+            alert("Failed to submit review. Please make sure you are signed in.");
         }
     };
 
@@ -155,6 +182,29 @@ function ReviewForm() {
                         radius={"md"}
                     />
                 </div>
+
+                <Dropzone
+                    onDrop={handleImageDrop}
+                    maxFiles={1}
+                    accept={IMAGE_MIME_TYPE}
+                    style={{
+                        border: "2px dashed #ccc",
+                        padding: "2.5rem",
+                        textAlign: "center",
+                        marginBottom: "1rem",
+                        borderRadius: "10px",
+                        backgroundColor: previewImage ? "#e1f7e3" : "white",
+                        borderColor: previewImage ? "#4caf50" : "#ccc",
+                    }}
+                >
+                    <div>
+                        {previewImage ? (
+                            <p>Uploaded!</p>
+                        ) : (
+                            <p>Drag an image here or click to select one. (Only one image allowed)</p>
+                        )}
+                    </div>
+                </Dropzone>
 
                 <div className={styles.submitButtonContainer}>
                     <Button onClick={handleSubmit} className={styles.submitButton}>Submit Review</Button>

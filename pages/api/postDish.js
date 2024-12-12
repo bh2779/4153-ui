@@ -3,8 +3,6 @@ import axios from "axios";
 export default async function postDish(req, res) {
 	const { body } = req.body;
 	const endpoint = process.env.DISH_MANAGEMENT_SERVICE_URL + "/dishes";
-    console.log(endpoint)
-    console.log(JSON.parse(body))
 
 	try {
         const response = await axios.post(endpoint, JSON.parse(body))
