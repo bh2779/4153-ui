@@ -1,9 +1,7 @@
-import Header from "../components/Header/Header";
+import Home from "../components/Home/Home";
 
-const Home = () => {
-	return (
-		<Header />
-	);
+const Main = () => {
+	return <Home />;
 };
 
-export default Home;
+export default Main;

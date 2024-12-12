@@ -1,0 +1,27 @@
+.center {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.container {
+	padding: 20px;
+	margin: 0px 20px;
+	max-width: 600px;
+	text-align: center;
+	background: linear-gradient(
+		135deg,
+		#eef2f3,
+		#8e9eab
+	); /* Soft gradient background */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 12px;
+}
+
+.text {
+	font-size: 1.2rem;
+	font-weight: 700;
+	color: #333333; /* Dark gray text */
+	line-height: 1.8;
+}
