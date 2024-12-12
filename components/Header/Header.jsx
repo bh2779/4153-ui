@@ -5,6 +5,7 @@ import SearchResult from "./SearchResult";
 import axios from "axios";
 import styles from "./Header.module.css";
 import Link from "next/link";
+import HomeButton from "../HomeButton/HomeButton";
 
 function Header() {
 	const [results, setResults] = useState([]);
