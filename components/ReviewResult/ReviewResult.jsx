@@ -24,6 +24,17 @@ function ReviewResult({ review }) {
 			<Text className={styles.rating}>Rating: {review.rating} out of 5</Text>
             <Text className={styles.date}>Date: {formattedDate}</Text>
 			<Text className={styles.review}> Comments: {review.review}</Text>
+			{review.images && review.images.length > 0 ? (
+				review.images.map((image, index) => (
+				<img
+					key={index}
+					src={`data:image/jpeg;base64,${image}`}
+					style={{ maxWidth: "100%", maxHeight: "300px", display: "block", marginTop: "1rem" }}
+				/>
+				))
+			) : (
+				null
+			)}
 		</List.Item>
 	);
 }

@@ -13,8 +13,9 @@ export default function ReviewsPage() {
 
 	useEffect(() => {
 		async function getReviews(params) {
-			const reviewsResponse = await axios.get(`/api/getReviews`, { params: { dish_id: id }})
-
+			const reviewsResponse = await axios.get(`/api/getReviews?dish_id=${id}`);
+			// const reviewsResponse = await axios.get(`/api/getReviews`, { params: { dish_id: id }})
+			
 			const reviewResults = reviewsResponse.data.map(
 				(review) => ({
 					...review,
@@ -45,8 +46,8 @@ export default function ReviewsPage() {
 				<p> <b>Station:</b> {station}</p>
 				<p> <b>Average Rating:</b> {typeof averageRating === 'number'? `${averageRating.toFixed(1)} out of 5`: averageRating}</p>
 			</div>
-			<div className={styles.reviewsList}>
-				<List>
+			<div className={styles.reviewsListContainer}>
+				<List className={styles.reviewsList}>
 					{reviews.map((review) => (
 						<ReviewResult key={review.id} review={review}/>
 					))}
